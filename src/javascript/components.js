@@ -110,8 +110,10 @@ const eventos = () => {
         botonNuevo.classList.toggle('ocultar');
         botonPasar.classList.toggle('ocultar');
         botonAgregar.classList.toggle('ocultar');
-        tags.classList.toggle('ocultar');
+        botonPedir.disabled = false;
+        botonPasar.disabled = false;
         tagNumeroJugadores.innerText = 1;
+        tagTurno.classList.toggle('ocultar');
         botonNuevo.disabled = false;
         (divCompu.querySelector('.divCartas')).innerHTML = '';
         computadora.setPuntos = 0;

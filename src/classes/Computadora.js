@@ -127,7 +127,6 @@ class Computadora extends Jugador{
                     console.log('5')
                 }
                 await mandarAlerta(texto, clase, this.#Alertas);
-                await esperar(500);
             }
         }
     }

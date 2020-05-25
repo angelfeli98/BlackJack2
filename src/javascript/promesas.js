@@ -22,7 +22,7 @@ const mandarAlerta = async (texto,clase,div) => {
     div.innerText = texto;
     div.classList.remove('alert-success', 'alert-danger', 'alert-warning');
     div.classList.add(clase);
-    await esperar(2000);
+    await esperar(2500);
     div.classList.toggle('ocultar');
 }
 
