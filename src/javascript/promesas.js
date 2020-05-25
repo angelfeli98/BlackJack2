@@ -1,6 +1,5 @@
  
 const crearCarta = async (jugador, carta) => {
-    //await esperar(1000);
     const cartaimg = document.createElement('img');
     cartaimg.src = `src/assets/${carta}.png`;
     cartaimg.classList.add('carta'); 

@@ -25,6 +25,10 @@ class Jugador{
         this.#puntos = puntos;
     }
 
+    set setUsuario(usuario){
+        this.#usuario = usuario;
+    }
+
     get getPuntos(){
         return this.#puntos;
     }

@@ -25,12 +25,17 @@ let computadora;
 
 const configurarJuego = () => {
     const jugaorDeault = new Humano({id: (new Date()).getTime(),nombre: 1});
+    //console.log(Jugador.getNoJugadores);
     jugadores.push(jugaorDeault);
 }
 
 const iniciarJuego = () => {
     botonAgregar.classList.toggle('ocultar');
     computadora = new Computadora({id: 'xxx',nombre: jugadores.length + 1});
+    computadora.setUsuario = jugadores.length + 1;
+    (botonAgregar.disabled)? '' : true;
+    console.log(jugadores);
+    console.log(computadora);
     (divCompu.querySelector('small')).setAttribute('id',`juagador${computadora.getUsuario*10}`);
     (divCompu.querySelector('.divCartas')).setAttribute('id',`juagador${computadora.getUsuario}`);
     computadora.barajear();
@@ -119,6 +124,7 @@ const eventos = () => {
         computadora.setPuntos = 0;
         computadora.reinicarCartas();
         Jugador.setNoJugadores = 0;
+        botonAgregar.disabled = false;
         configurarJuego();
     })
 }
