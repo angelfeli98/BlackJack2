@@ -2,9 +2,9 @@ const HtmlWebPackPlugin = require('html-webpack-plugin');
 const MiniCssStractPlugin = require('mini-css-extract-plugin');
 const OptimizeCssAssetsWebpackPlugin = require('optimize-css-assets-webpack-plugin')
 const CopyPlugin = require('copy-webpack-plugin'); 
+
  
 module.exports = {
- 
     mode: 'development',
     optimization: {
         minimizer: [ new OptimizeCssAssetsWebpackPlugin() ]
@@ -12,15 +12,30 @@ module.exports = {
     module: {
         rules: [
             {
+                test: /\.js$/, 
+                exclude: /node_modules/,
+                use: {
+                    loader: 'babel-loader',
+                    options: {
+                      presets: ['@babel/preset-env'],
+                      plugins: [
+                          ["@babel/plugin-proposal-class-properties"],
+                          ["@babel/plugin-transform-async-to-generator"],
+                          ["@babel/plugin-transform-runtime"]
+                        ]
+                    }
+                  }
+            },
+            {
                test:/\.css$/,
-               exclude: /styles\.css$/,
+               exclude: /style\.css$/,
                use: [
                    'style-loader',
                    'css-loader'
                ]
             },
             {
-                test:/styles\.css$/,
+                test:/style\.css$/,
                 use: [
                      MiniCssStractPlugin.loader,
                     'css-loader'
@@ -56,9 +71,9 @@ module.exports = {
             filename: '[name].css',
             ignoreOrder: false
         }),
-        new CopyPlugin([{
-            from: 'src/assets', to: 'assets/'
-        }])
+        new CopyPlugin([
+            { from: 'src/assets', to: 'assets/'},
+        ])
     ]
  
     

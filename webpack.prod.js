@@ -4,9 +4,9 @@ const OptimizeCssAssetsWebpackPlugin = require('optimize-css-assets-webpack-plug
 const CopyPlugin = require('copy-webpack-plugin'); 
 const MinifyPlugin = require('babel-minify-webpack-plugin');
 const {CleanWebpackPlugin} = require('clean-webpack-plugin');
+
  
 module.exports = {
- 
     mode: 'production',
     optimization: {
         minimizer: [ new OptimizeCssAssetsWebpackPlugin() ]
@@ -19,25 +19,33 @@ module.exports = {
             {
                 test: /\.js$/, 
                 exclude: /node_modules/, 
-                use: [ 
-                    "babel-loader"
-                ]  
+                use: {
+                    loader: 'babel-loader',
+                    options: {
+                      presets: ['@babel/preset-env'],
+                      plugins: [
+                          ["@babel/plugin-proposal-class-properties"],
+                          ["@babel/plugin-transform-async-to-generator"],
+                          ["@babel/plugin-transform-runtime"]
+                        ]
+                    }
+                  }  
             },
             {
-               test:/\.css$/,
-               exclude: /styles\.css$/,
-               use: [
-                   'style-loader',
-                   'css-loader'
-               ]
-            },
-            {
-                test:/styles\.css$/,
+                test:/\.css$/,
+                exclude: /style\.css$/,
                 use: [
-                     MiniCssStractPlugin.loader,
+                    'style-loader',
                     'css-loader'
                 ]
-            },
+             },
+             {
+                 test:/style\.css$/,
+                 use: [
+                      MiniCssStractPlugin.loader,
+                     'css-loader'
+                 ]
+             },
             {
                 test: /\.html$/i,
                 loader: 'html-loader',
@@ -68,17 +76,16 @@ module.exports = {
             filename: '[contenthash].[name].css',
             ignoreOrder: false
         }),
-        new CopyPlugin([{
-            from: 'src/assets', to: 'assets/'
-        }]),
+        new CopyPlugin([
+            { from: 'src/assets', to: 'src/assets/'},
+            //{ from: 'src/classes', to: 'classes/' },
+        ]),
         new MinifyPlugin(
-
+            
         ),
         new CleanWebpackPlugin(
 
         )
     ]
- 
-    
 }
  

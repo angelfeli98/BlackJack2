@@ -1,13 +1,49 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Webpack</title>
+    <title>Blackjack</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <link rel = "stylesheet" href = "src/style.css">
 </head>
 <body>
+    <header class="titulo">BlackJack</header>
 
-    <img src = "assets/foto2.png" alt = "Webpack logo">
-    <!--<script src = "../dist/main.js"></script>-->
+    <div class = "row mt-2">
+        <div id="divbotones" class= "col text-center">
+            <button id="btnnuevo" class="btn btn-success">Empezar juego</button>
+            <button id="btagregar" class="btn btn-primary">Agregar Jugador</button>
+            <button id="btpedir" class="btn btn-primary ocultar">Pedir Carta</button>
+            <button id="btnpasar" class="btn btn-warning ocultar">Pasar</button>
+            <button id="btndetener" class="btn btn-danger ocultar">Detener Juego</button>
+            <div class="alert ocultar" role="" id="alertas">
+            </div>
+        </div>
+    </div>
+        <div class="noJugadores centrar">
+            <h4>Numero de jugadores: <small id = "noJugadores">1</small></h4>
+        </div>
+        <div class="cargandoCartas centrar ocultar">
+            <h4>Repartiendo Cartas</h4>
+        </div>
+    <br>
+        <div class="ocultar centrar" id = "turnoJugador">
+            <h3 class = "centrar" id = "turnoJugador">Es turno del jugador: <small id = "turnoTag">1</small></h3>
+        </div>
+    <br>
+    <div class= "row container" id = "jugadorestableros">
+        
+    </div>
+    
+    <div class= "row container mt-5">
+        <div class="col" id="compuid">
+            <h2>Puntos Computadora - <small>0</small></h2>
+            <div class="divCartas" id = "divCartasCompu">
+                <!-- <img class = "carta" src = "assets/cartas/10C.png"> -->
+            </div>
+        </div>
+    </div>
+    
 </body>
 </html>
